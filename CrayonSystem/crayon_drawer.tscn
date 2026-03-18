@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dqotn0l0euvhh"]
+
+[ext_resource type="Script" uid="uid://ckiy7yi2vv40b" path="res://CrayonSystem/crayon_drawer.gd" id="1_hx7lw"]
+
+[node name="CrayonDrawer" type="Node2D" unique_id=1362161575]
+script = ExtResource("1_hx7lw")
