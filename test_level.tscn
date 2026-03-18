@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bwmnef6ajguoa" path="res://Player/player.tscn" id="1_1c2mv"]
 [ext_resource type="PackedScene" uid="uid://dqotn0l0euvhh" path="res://CrayonSystem/crayon_drawer.tscn" id="2_f7g2b"]
+[ext_resource type="PackedScene" uid="uid://vhi7weq6wv5a" path="res://Enemies/chaser.tscn" id="3_f7g2b"]
 
 [node name="test level" type="Node2D" unique_id=973289048]
 
@@ -12,4 +13,8 @@
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1535988774]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1920977373]
-polygon = PackedVector2Array(-113, 495, -130, 916, 1446, 904, 1453, 495)
+polygon = PackedVector2Array(-212, -18, -409, 452, -276, 905, 1446, 904, 1453, 495, 1228, -57, 1212, 480, -204, 483)
+
+[node name="Chaser" parent="." unique_id=1662775545 node_paths=PackedStringArray("player") instance=ExtResource("3_f7g2b")]
+position = Vector2(-161, -171)
+player = NodePath("../Player")

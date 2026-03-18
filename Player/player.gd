@@ -18,3 +18,10 @@ func _physics_process(delta):
 		velocity.y = jump_velocity
 
 	move_and_slide()
+
+func die():
+	call_deferred("_die_safe")
+
+func _die_safe():
+	await get_tree().create_timer(0.5).timeout
+	get_tree().reload_current_scene()
