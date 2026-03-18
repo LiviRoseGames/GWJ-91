@@ -58,4 +58,21 @@ func add_point(pos):
 	if last_point.distance_to(pos) < 6:
 		return
 
+	add_collision(last_point, pos)
+
 	current_line.add_point(pos)
+
+func add_collision(a: Vector2, b: Vector2):
+
+	var body = StaticBody2D.new()
+
+	var collision = CollisionShape2D.new()
+	var shape = SegmentShape2D.new()
+
+	shape.a = a
+	shape.b = b
+
+	collision.shape = shape
+	body.add_child(collision)
+
+	add_child(body)
