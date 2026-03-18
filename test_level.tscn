@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cy7h66r66kgky"]
+
+[ext_resource type="PackedScene" uid="uid://bwmnef6ajguoa" path="res://Player/player.tscn" id="1_1c2mv"]
+[ext_resource type="PackedScene" uid="uid://dqotn0l0euvhh" path="res://CrayonSystem/crayon_drawer.tscn" id="2_f7g2b"]
+
+[node name="test level" type="Node2D" unique_id=973289048]
+
+[node name="Player" parent="." unique_id=1638637039 instance=ExtResource("1_1c2mv")]
+
+[node name="CrayonDrawer" parent="." unique_id=1362161575 instance=ExtResource("2_f7g2b")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1535988774]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1920977373]
+polygon = PackedVector2Array(-113, 495, -130, 916, 1446, 904, 1453, 495)
