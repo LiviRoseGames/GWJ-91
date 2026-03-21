@@ -3,12 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://bwmnef6ajguoa" path="res://Player/player.tscn" id="1_1c2mv"]
 [ext_resource type="PackedScene" uid="uid://dqotn0l0euvhh" path="res://CrayonSystem/crayon_drawer.tscn" id="2_f7g2b"]
 [ext_resource type="PackedScene" uid="uid://vhi7weq6wv5a" path="res://Enemies/chaser.tscn" id="3_f7g2b"]
+[ext_resource type="PackedScene" uid="uid://bsbtpp84pdo2k" path="res://UI/ui.tscn" id="4_4ptq8"]
 
 [node name="test level" type="Node2D" unique_id=973289048]
 
 [node name="Player" parent="." unique_id=1638637039 instance=ExtResource("1_1c2mv")]
 
-[node name="CrayonDrawer" parent="." unique_id=1362161575 instance=ExtResource("2_f7g2b")]
+[node name="CrayonDrawer" parent="." unique_id=1362161575 node_paths=PackedStringArray("ink_bar") instance=ExtResource("2_f7g2b")]
+ink_bar = NodePath("../UI/CanvasLayer/InkBar")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1535988774]
 
@@ -18,3 +20,7 @@ polygon = PackedVector2Array(-212, -18, -409, 452, -276, 905, 1446, 904, 1453, 4
 [node name="Chaser" parent="." unique_id=1662775545 node_paths=PackedStringArray("player") instance=ExtResource("3_f7g2b")]
 position = Vector2(-161, -171)
 player = NodePath("../Player")
+
+[node name="UI" parent="." unique_id=1424531890 instance=ExtResource("4_4ptq8")]
+
+[editable path="UI"]
