@@ -1,17 +1,20 @@
 [gd_scene format=3 uid="uid://bwmnef6ajguoa"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_4ntmi"]
 [ext_resource type="Script" uid="uid://batafhm05bnuw" path="res://Player/player.gd" id="1_btcbx"]
+[ext_resource type="Texture2D" uid="uid://bdoml2507a8hl" path="res://Player/sprites/jump/jump_frame3a.png" id="2_4ntmi"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwnis"]
-size = Vector2(127, 126)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
+radius = 18.5
+height = 99.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1638637039]
+[node name="Player" type="CharacterBody2D" unique_id=1638637039 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_btcbx")
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=716430552]
-position = Vector2(-0.5, 0)
-shape = SubResource("RectangleShape2D_gwnis")
+position = Vector2(33, -3)
+scale = Vector2(1, 0.5)
+shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1522394023]
-texture = ExtResource("1_4ntmi")
+texture = ExtResource("2_4ntmi")
