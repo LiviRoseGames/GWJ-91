@@ -4,3 +4,4 @@
 
 [node name="CrayonDrawer" type="Node2D" unique_id=1362161575]
 script = ExtResource("1_hx7lw")
+crayonColor = Color(0.9034837, 0.42835292, 0.25965184, 1)

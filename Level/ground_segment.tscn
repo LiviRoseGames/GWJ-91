@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://baabrew7wt0yc"]
+
+[ext_resource type="Texture2D" uid="uid://dsediq5iliq10" path="res://CrayonSystem/CrayonTexture.png" id="1_80r22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1b7g"]
+
+[node name="Ground Segment" type="Node2D" unique_id=80651712]
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1434909733]
+width = 64.0
+texture = ExtResource("1_80r22")
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1777078311]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2079018498]
+shape = SubResource("RectangleShape2D_p1b7g")

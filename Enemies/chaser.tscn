@@ -1,28 +1,30 @@
 [gd_scene format=3 uid="uid://vhi7weq6wv5a"]
 
 [ext_resource type="Script" uid="uid://c5kjxk0uiq7i5" path="res://Enemies/chaser.gd" id="1_6557k"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dyoh"]
-size = Vector2(50, 50)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pfkvt"]
+[ext_resource type="Texture2D" uid="uid://kr20amk082cj" path="res://Player/sprites/run/run_frame1a.png" id="2_0dyoh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sw3ss"]
 radius = 37.01351
 
-[node name="Chaser" type="CharacterBody2D" unique_id=1662775545]
-script = ExtResource("1_6557k")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dyoh"]
+radius = 18.5
+height = 82.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=7224742]
-shape = SubResource("RectangleShape2D_0dyoh")
+[node name="Chaser" type="CharacterBody2D" unique_id=1662775545 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_6557k")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=307409857]
-scale = Vector2(50, 50)
-texture = SubResource("PlaceholderTexture2D_pfkvt")
+texture = ExtResource("2_0dyoh")
 
 [node name="CatchZone" type="Area2D" parent="." unique_id=899805653]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CatchZone" unique_id=1366066019]
+position = Vector2(32, 21)
 shape = SubResource("CircleShape2D_sw3ss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322064400]
+position = Vector2(27, 21)
+shape = SubResource("CapsuleShape2D_0dyoh")
 
 [connection signal="body_entered" from="CatchZone" to="." method="_on_catch_zone_body_entered"]

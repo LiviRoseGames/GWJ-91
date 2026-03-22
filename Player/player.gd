@@ -270,11 +270,15 @@ func apply_pose_offset(frame_array, index):
 func die():
 	if state == State.DIE:
 		return
+
 	state = State.DIE
 	death_timer = 0.0
 
-	# Save high score immediately
 	ScoreManager.finalize_high_score()
+
+	var overlay = get_tree().current_scene.get_node("DeathOverlay")
+	if overlay:
+		overlay.show_overlay(int(ScoreManager.score), int(ScoreManager.high_score))
 
 func death_animation(delta):
 	death_timer += delta
