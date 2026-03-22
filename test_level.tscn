@@ -49,4 +49,6 @@ target = NodePath("../Player")
 [node name="HazardLine" parent="." unique_id=2123131939 instance=ExtResource("10_lowby")]
 position = Vector2(0, 500)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2090550871]
+
 [editable path="UI"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://f7p2cya5s5q8"]
+
+[ext_resource type="Script" path="res://Enemies/arrow.gd" id="1_rogww"]
+[ext_resource type="Texture2D" path="res://CrayonSystem/arrowSprite.png" id="2_aidxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_486e7"]
+size = Vector2(109, 60)
+
+[node name="arrow" type="Area2D" unique_id=433287324]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_rogww")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1374683380]
+texture = ExtResource("2_aidxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=757880017]
+position = Vector2(-2.5, 2)
+shape = SubResource("RectangleShape2D_486e7")

@@ -13,11 +13,10 @@ var current_stroke: Node2D
 # Ink system
 var max_ink: float = 100.0
 var ink: float = 100.0
-var ink_use_rate: float = 40.0    # per second while drawing
-var ink_regen_rate: float = 20.0  # per second when not drawing
+var ink_use_rate: float = 300.0    # per second while drawing (fast depletion)
+var ink_regen_rate: float = 10.0   # per second when not drawing
 
 @export var ink_bar: TextureProgressBar
-
 
 # -------------------------------
 # Godot Lifecycle
@@ -25,9 +24,8 @@ var ink_regen_rate: float = 20.0  # per second when not drawing
 func _ready() -> void:
 	ink = max_ink  # start full
 
-
 func _process(delta: float) -> void:
-	# --- Update ink first ---
+	# --- Update ink ---
 	if drawing:
 		ink -= ink_use_rate * delta
 	else:
@@ -42,16 +40,11 @@ func _process(delta: float) -> void:
 	if ink_bar:
 		ink_bar.max_value = max_ink
 		ink_bar.value = ink
-	
-		var percent = ink / max_ink
-	
-		# Choose colors (fully opaque)
-		var empty_color = Color(0.4, 0.4, 0.4, 1.0)  # dark gray
-		var full_color = Color(crayonColor.r, crayonColor.g, crayonColor.b, 1.0)
-	
-		# Lerp color based on ink percent
-		ink_bar.modulate = empty_color.lerp(full_color, percent)
 
+		var percent = ink / max_ink
+		var empty_color = Color(0.4, 0.4, 0.4, 1.0)
+		var full_color = Color(crayonColor.r, crayonColor.g, crayonColor.b, 1.0)
+		ink_bar.modulate = empty_color.lerp(full_color, percent)
 
 # -------------------------------
 # Input Handling
@@ -66,13 +59,19 @@ func _input(event):
 	if event is InputEventMouseMotion and drawing:
 		add_point(get_global_mouse_position())
 
-
 # -------------------------------
 # Drawing Functions
 # -------------------------------
 func start_drawing():
-	drawing = true
+	# Delete previous stroke immediately
+	if is_instance_valid(current_stroke):
+		current_stroke.queue_free()
+		current_stroke = null
+		current_line = null
+		drawing = false
 
+	# Start new stroke
+	drawing = true
 	current_stroke = Node2D.new()
 	add_child(current_stroke)
 
@@ -82,7 +81,6 @@ func start_drawing():
 	current_line.begin_cap_mode = Line2D.LINE_CAP_ROUND
 	current_line.end_cap_mode = Line2D.LINE_CAP_ROUND
 	current_line.joint_mode = Line2D.LINE_JOINT_ROUND
-
 	current_line.texture = preload("res://CrayonSystem/CrayonTexture.png")
 	current_line.texture_mode = Line2D.LINE_TEXTURE_TILE
 	current_line.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
@@ -93,7 +91,6 @@ func start_drawing():
 	current_line.material = mat
 
 	current_stroke.add_child(current_line)
-
 
 func stop_drawing():
 	if not drawing:
@@ -106,7 +103,6 @@ func stop_drawing():
 		fade_stroke(current_stroke)
 		current_stroke = null
 
-
 func add_point(pos: Vector2):
 	if not is_instance_valid(current_line):
 		return
@@ -116,13 +112,11 @@ func add_point(pos: Vector2):
 		return
 
 	var last_point = current_line.get_point_position(current_line.get_point_count() - 1)
-
 	if last_point.distance_to(pos) < 6:
 		return
 
 	add_collision(last_point, pos)
 	current_line.add_point(pos)
-
 
 # -------------------------------
 # Collision for Walls
@@ -132,7 +126,6 @@ func add_collision(a: Vector2, b: Vector2):
 		return
 
 	var body = StaticBody2D.new()
-
 	var collision = CollisionShape2D.new()
 	var shape = SegmentShape2D.new()
 	shape.a = a
@@ -141,18 +134,6 @@ func add_collision(a: Vector2, b: Vector2):
 	body.add_child(collision)
 
 	current_stroke.add_child(body)
-
-	# Limit walls per stroke to prevent performance issues
-	var count = 0
-	for child in current_stroke.get_children():
-		if child is StaticBody2D:
-			count += 1
-	if count > 200:
-		for child in current_stroke.get_children():
-			if child is StaticBody2D:
-				child.queue_free()
-				break
-
 
 # -------------------------------
 # Fade Stroke (Visual + Collision)
