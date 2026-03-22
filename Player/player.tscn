@@ -4,16 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://bdoml2507a8hl" path="res://Player/sprites/jump/jump_frame3a.png" id="2_4ntmi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
-radius = 18.5
-height = 99.0
+radius = 18.0
+height = 52.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1638637039 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_btcbx")
 sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=716430552]
-position = Vector2(33, -3)
-scale = Vector2(1, 0.5)
+position = Vector2(38, -9)
 shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1522394023]

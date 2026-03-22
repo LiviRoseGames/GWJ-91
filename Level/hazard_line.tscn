@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cuba1rkqnrouk"]
+
+[ext_resource type="Script" uid="uid://fljievmiwcu2" path="res://Level/hazard_line.gd" id="1_2b1fv"]
+[ext_resource type="Texture2D" uid="uid://dsediq5iliq10" path="res://CrayonSystem/CrayonTexture.png" id="2_neo62"]
+
+[node name="HazardLine" type="Node2D" unique_id=2123131939]
+script = ExtResource("1_2b1fv")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=461639452]
+texture = ExtResource("2_neo62")

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cy7h66r66kgky"]
+
+[ext_resource type="PackedScene" uid="uid://bwmnef6ajguoa" path="res://Player/player.tscn" id="1_1c2mv"]
+[ext_resource type="PackedScene" uid="uid://co1o7y3jy2vc" path="res://score_manager.tscn" id="1_lnbra"]
+[ext_resource type="PackedScene" uid="uid://dqotn0l0euvhh" path="res://CrayonSystem/crayon_drawer.tscn" id="2_f7g2b"]
+[ext_resource type="PackedScene" uid="uid://vhi7weq6wv5a" path="res://Enemies/chaser.tscn" id="3_f7g2b"]
+[ext_resource type="PackedScene" uid="uid://bsbtpp84pdo2k" path="res://UI/ui.tscn" id="4_4ptq8"]
+[ext_resource type="PackedScene" uid="uid://fremcsdx2buk" path="res://Level/spawner.tscn" id="5_sb12i"]
+[ext_resource type="PackedScene" uid="uid://baabrew7wt0yc" path="res://Level/ground_segment.tscn" id="6_gbhdq"]
+[ext_resource type="Script" uid="uid://61itdcc0qbhr" path="res://Level/camera_2d.gd" id="7_y646j"]
+
+[node name="test level" type="Node2D" unique_id=973289048]
+
+[node name="ScoreManager" parent="." unique_id=1194744764 node_paths=PackedStringArray("player") instance=ExtResource("1_lnbra")]
+player = NodePath("../Player")
+
+[node name="Player" parent="." unique_id=1638637039 instance=ExtResource("1_1c2mv")]
+
+[node name="CrayonDrawer" parent="." unique_id=1362161575 node_paths=PackedStringArray("ink_bar") instance=ExtResource("2_f7g2b")]
+ink_bar = NodePath("../UI/CanvasLayer/InkBar")
+
+[node name="Chaser" parent="." unique_id=1662775545 node_paths=PackedStringArray("player") instance=ExtResource("3_f7g2b")]
+position = Vector2(-161, -171)
+player = NodePath("../Player")
+
+[node name="UI" parent="." unique_id=1424531890 instance=ExtResource("4_4ptq8")]
+
+[node name="Spawner" parent="." unique_id=1536637845 node_paths=PackedStringArray("player") instance=ExtResource("5_sb12i")]
+player = NodePath("../Player")
+ground_scene = ExtResource("6_gbhdq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2046966351 node_paths=PackedStringArray("target")]
+script = ExtResource("7_y646j")
+target = NodePath("../Player")
+
+[editable path="UI"]
